@@ -1,0 +1,68 @@
+name: Fetch Servers
+
+on:
+  schedule:
+    - cron: '0 */3 * * *' # At minute 0 past every 3rd hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      - name: Set Git Identity
+        run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install Python Packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r mullvad-metadata-fetcher/requirements.txt
+
+      - name: Execute Script
+        run: python mullvad-metadata-fetcher/runner.py
+
+      - name: Commit & Push
+        run: |
+          set -euo pipefail
+          
+          git add .
+          
+          if git diff --cached --quiet; then
+            echo "Nothing to commit and push."
+            exit 0
+          fi
+          
+          git remote set-url origin "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git"
+          
+          LAST_SUBJECT="$(git log -1 --pretty=%s || echo "")"
+          BASE_SUBJECT="chore(bot): fetch servers"
+
+          if [ "$LAST_SUBJECT" = "$BASE_SUBJECT" ]; then
+            echo "Last commit has same subject -> creating fixup commit."
+            git commit --amend -m "$BASE_SUBJECT"
+            git push --force-with-lease origin HEAD
+          else
+            git commit -m "$BASE_SUBJECT"
+            git push origin HEAD
+          fi
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
