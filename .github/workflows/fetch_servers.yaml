@@ -1,0 +1,51 @@
+name: Fetch Servers
+
+on:
+  schedule:
+    - cron: '0 */3 * * *' # At minute 0 past every 3rd hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set Git Identity
+        run: |
+            git config user.name "github-actions[bot]"
+            git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Install Python Packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r mullvad-metadata-fetcher/requirements.txt
+
+      - name: Execute Script
+        run: python mullvad-metadata-fetcher/runner.py
+
+      - name: Commit & Push
+        run: |
+          git add .
+          if git diff --cached --quiet; then
+            echo "Nothing to commit and push."
+          else
+            git commit -m "chore(bot): fetch servers"
+            git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
+            git push origin HEAD
+          fi
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
