@@ -22,28 +22,6 @@
     "status_messages": []
   },
   {
-    "hostname": "hk-hkg-wg-202",
-    "country_code": "hk",
-    "country_name": "Hong Kong",
-    "city_code": "hkg",
-    "city_name": "Hong Kong",
-    "fqdn": "hk-hkg-wg-202.relays.mullvad.net",
-    "active": true,
-    "owned": false,
-    "provider": "xtom",
-    "ipv4_addr_in": "103.125.233.3",
-    "ipv6_addr_in": "2403:2c81:1000::a05f",
-    "network_port_speed": 10,
-    "stboot": true,
-    "pubkey": "zmhMPHfkgo+uQxP+l919Gw7cj5NTatg9nMU37eEUWis=",
-    "multihop_port": 3192,
-    "socks_name": "hk-hkg-wg-socks5-202.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false,
-    "type": "wireguard",
-    "status_messages": []
-  },
-  {
     "hostname": "hk-hkg-wg-301",
     "country_code": "hk",
     "country_name": "Hong Kong",
