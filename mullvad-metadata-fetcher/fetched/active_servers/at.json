@@ -66,28 +66,6 @@
     "status_messages": []
   },
   {
-    "hostname": "at-vie-wg-101",
-    "country_code": "at",
-    "country_name": "Austria",
-    "city_code": "vie",
-    "city_name": "Vienna",
-    "fqdn": "at-vie-wg-101.relays.mullvad.net",
-    "active": true,
-    "owned": false,
-    "provider": "DataPacket",
-    "ipv4_addr_in": "185.24.11.130",
-    "ipv6_addr_in": "2a02:6ea0:cb1b:1::f001",
-    "network_port_speed": 10,
-    "stboot": true,
-    "pubkey": "dj3qNfJfA4dWXsWokPcDh4oo6xaPtOTPfbr5UzHKZ0M=",
-    "multihop_port": 3327,
-    "socks_name": "at-vie-wg-socks5-101.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false,
-    "type": "wireguard",
-    "status_messages": []
-  },
-  {
     "hostname": "at-vie-wg-102",
     "country_code": "at",
     "country_name": "Austria",
