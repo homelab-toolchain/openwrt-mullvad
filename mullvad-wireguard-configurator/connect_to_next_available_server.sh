@@ -10,7 +10,7 @@
 # ----------------------------------------------------------------------------------------------------
 # Select next server
 # ----------------------------------------------------------------------------------------------------
-JSON_FILE="owned_stable/$COUNTRY_CODE.json"
+JSON_FILE="../mullvad-metadata-fetcher/fetched/active_servers/$COUNTRY_CODE.json"
 CURRENT_DESCRIPTION=$(uci get network.@wireguard_wg0[0].description 2>/dev/null)
 TOTAL_SERVERS=$(jq length "$JSON_FILE")
 

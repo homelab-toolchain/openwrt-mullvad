@@ -21,6 +21,7 @@ uci commit network
 # ----------------------------------------------------------------------------------------------------
 # Configure DNS
 # ----------------------------------------------------------------------------------------------------
+DNS_IP="10.64.0.1"
 uci delete dhcp.@dnsmasq[0].server > /dev/null 2>&1
 uci add_list dhcp.@dnsmasq[0].server="$DNS_IP"
 uci commit dhcp
