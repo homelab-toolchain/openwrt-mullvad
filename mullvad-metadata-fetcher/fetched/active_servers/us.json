@@ -3674,28 +3674,6 @@
     "status_messages": []
   },
   {
-    "hostname": "us-slc-wg-202",
-    "country_code": "us",
-    "country_name": "USA",
-    "city_code": "slc",
-    "city_name": "Salt Lake City, UT",
-    "fqdn": "us-slc-wg-202.relays.mullvad.net",
-    "active": true,
-    "owned": false,
-    "provider": "100TB",
-    "ipv4_addr_in": "69.4.234.149",
-    "ipv6_addr_in": "2607:fc98:0:8a::f401",
-    "network_port_speed": 10,
-    "stboot": true,
-    "pubkey": "mKD4untTerTbg+1pJh3FA9zjOAOtoTHqOJzIP0lnqH4=",
-    "multihop_port": 3267,
-    "socks_name": "us-slc-wg-socks5-202.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false,
-    "type": "wireguard",
-    "status_messages": []
-  },
-  {
     "hostname": "us-slc-wg-203",
     "country_code": "us",
     "country_name": "USA",
