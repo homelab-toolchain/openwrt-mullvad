@@ -17,7 +17,7 @@
     "multihop_port": 3216,
     "socks_name": "co-bog-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -39,7 +39,7 @@
     "multihop_port": 3217,
     "socks_name": "co-bog-wg-socks5-002.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   }

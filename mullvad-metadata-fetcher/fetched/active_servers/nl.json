@@ -259,7 +259,7 @@
     "multihop_port": 3507,
     "socks_name": "nl-ams-wg-socks5-201.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -281,7 +281,7 @@
     "multihop_port": 3508,
     "socks_name": "nl-ams-wg-socks5-202.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },

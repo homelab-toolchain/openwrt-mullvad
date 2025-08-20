@@ -149,7 +149,7 @@
     "multihop_port": 3168,
     "socks_name": "ca-mtr-wg-socks5-201.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -171,7 +171,7 @@
     "multihop_port": 3171,
     "socks_name": "ca-mtr-wg-socks5-202.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -193,7 +193,7 @@
     "multihop_port": 3489,
     "socks_name": "ca-tor-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -215,7 +215,7 @@
     "multihop_port": 3490,
     "socks_name": "ca-tor-wg-socks5-002.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -435,7 +435,7 @@
     "multihop_port": 3319,
     "socks_name": "ca-van-wg-socks5-301.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -457,7 +457,7 @@
     "multihop_port": 3320,
     "socks_name": "ca-van-wg-socks5-302.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   }

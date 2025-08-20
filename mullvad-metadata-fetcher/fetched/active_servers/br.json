@@ -83,7 +83,7 @@
     "multihop_port": 3539,
     "socks_name": "br-sao-wg-socks5-201.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
@@ -105,7 +105,7 @@
     "multihop_port": 3540,
     "socks_name": "br-sao-wg-socks5-202.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false,
+    "daita": true,
     "type": "wireguard",
     "status_messages": []
   },
