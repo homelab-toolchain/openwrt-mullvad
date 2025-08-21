@@ -189,7 +189,7 @@
     "ipv6_addr_in": "2a06:3040:3:210::f001",
     "network_port_speed": 10,
     "stboot": true,
-    "pubkey": "fbuN/aDs28f9+b+bdpMXPp1nxdBMO4d4FqWvXW8o4Ak=",
+    "pubkey": "aEObX8ThiHcN/Y40UqY8dXaGMJsVQUWhrEphbpuQRkw=",
     "multihop_port": 3256,
     "socks_name": "es-vlc-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
