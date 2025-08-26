@@ -176,28 +176,6 @@
     "status_messages": []
   },
   {
-    "hostname": "es-vlc-wg-001",
-    "country_code": "es",
-    "country_name": "Spain",
-    "city_code": "vlc",
-    "city_name": "Valencia",
-    "fqdn": "es-vlc-wg-001.relays.mullvad.net",
-    "active": true,
-    "owned": false,
-    "provider": "HostRoyale",
-    "ipv4_addr_in": "193.19.207.195",
-    "ipv6_addr_in": "2a06:3040:3:210::f001",
-    "network_port_speed": 10,
-    "stboot": true,
-    "pubkey": "aEObX8ThiHcN/Y40UqY8dXaGMJsVQUWhrEphbpuQRkw=",
-    "multihop_port": 3256,
-    "socks_name": "es-vlc-wg-socks5-001.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false,
-    "type": "wireguard",
-    "status_messages": []
-  },
-  {
     "hostname": "es-vlc-wg-002",
     "country_code": "es",
     "country_name": "Spain",
