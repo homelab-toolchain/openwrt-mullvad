@@ -484,6 +484,28 @@
     "status_messages": []
   },
   {
+    "hostname": "gb-mnc-wg-008",
+    "country_code": "gb",
+    "country_name": "UK",
+    "city_code": "mnc",
+    "city_name": "Manchester",
+    "fqdn": "gb-mnc-wg-008.relays.mullvad.net",
+    "active": true,
+    "owned": false,
+    "provider": "M247",
+    "ipv4_addr_in": "146.70.133.66",
+    "ipv6_addr_in": "2001:ac8:8b:2c::f001",
+    "network_port_speed": 10,
+    "stboot": true,
+    "pubkey": "2bciRobW0TPtjrZ2teilr+7PjyiBMUGfixvAKOE52Xo=",
+    "multihop_port": 3527,
+    "socks_name": "gb-mnc-wg-socks5-008.relays.mullvad.net",
+    "socks_port": 1080,
+    "daita": false,
+    "type": "wireguard",
+    "status_messages": []
+  },
+  {
     "hostname": "gb-mnc-wg-201",
     "country_code": "gb",
     "country_name": "UK",
