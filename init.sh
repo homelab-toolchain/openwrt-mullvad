@@ -6,4 +6,6 @@ cd "$SCRIPT_DIR" || exit 1
 
 git pull --rebase --autostash
 
+ash install_dependencies.sh
+
 find . -type f -name "*.sh" -exec chmod +x {} \;

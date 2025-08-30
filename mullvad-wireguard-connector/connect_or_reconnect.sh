@@ -2,9 +2,7 @@
 # shellcheck shell=dash
 
 # ----------------------------------------------------------------------------------------------------
-# Export environment variables
-# ----------------------------------------------------------------------------------------------------
-. import_config_parameters.sh
+. /homelab-toolchain/config/export_openwrt_mullvad_values.sh
 # ----------------------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------------------
@@ -17,7 +15,8 @@ TOTAL_SERVERS=$(jq length "$JSON_FILE")
 while :; do
     RANDOM_INDEX=$(shuf -i 0-$(($TOTAL_SERVERS - 1)) -n1)
     DESCRIPTION=$(jq -r ".[$RANDOM_INDEX].hostname" "$JSON_FILE")
-    [ "$DESCRIPTION" != "$CURRENT_DESCRIPTION" ] && break
+    IS_OWNED=$(jq -r ".[$RANDOM_INDEX].owned" "$JSON_FILE")
+    [ "$DESCRIPTION" != "$CURRENT_DESCRIPTION" ] && [ "$IS_OWNED" == "$OWNED_SERVERS_ONLY" ] && break
 done
 
 ENDPOINT_HOST=$(jq -r ".[$RANDOM_INDEX].ipv4_addr_in" "$JSON_FILE")
@@ -26,7 +25,7 @@ PUBLIC_KEY=$(jq -r ".[$RANDOM_INDEX].pubkey" "$JSON_FILE")
 # ----------------------------------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------------------------------
-# Configure Wireguard Peer
+# Configure WireGuard Peer
 # ----------------------------------------------------------------------------------------------------
 for i in $(uci show network | grep '=wireguard_wg0' | cut -d'[' -f2 | cut -d']' -f1 | sort -nr); do uci delete network.@wireguard_wg0[$i] > /dev/null 2>&1; done
 uci add network wireguard_wg0 > /dev/null 2>&1
@@ -35,11 +34,11 @@ uci set network.@wireguard_wg0[0].endpoint_host="$ENDPOINT_HOST"
 uci set network.@wireguard_wg0[0].endpoint_port="$ENDPOINT_PORT"
 uci set network.@wireguard_wg0[0].public_key="$PUBLIC_KEY"
 uci add_list network.@wireguard_wg0[0].allowed_ips='0.0.0.0/0'
-uci add_list network.@wireguard_wg0[0].allowed_ips='::0/0'
+#uci add_list network.@wireguard_wg0[0].allowed_ips='::0/0'
 uci set network.@wireguard_wg0[0].route_allowed_ips='1'
 uci commit network
 /etc/init.d/network reload
 ifdown wg0 && ifup wg0
 # ----------------------------------------------------------------------------------------------------
 
-echo "Enabled the following wireguard peer: $DESCRIPTION"
+echo "Enabled the following WireGuard peer: $DESCRIPTION"
