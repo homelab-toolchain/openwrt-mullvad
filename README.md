@@ -2,7 +2,7 @@
 <h3 align="center">Automated WireGuard control handled by OpenWrt instance</h3>
 <p align="center">
 <a href="#">
-<img src="https://img.shields.io/github/last-commit/homelab-toolchain/openwrt-mullvad?style=for-the-badge"/>
+<img src="https://img.shields.io/github/last-commit/homelab-toolchain/openwrt-mullvad/main?style=for-the-badge&label=last%20update&display_timestamp=committer"/>
 </a>
 </p>
 
