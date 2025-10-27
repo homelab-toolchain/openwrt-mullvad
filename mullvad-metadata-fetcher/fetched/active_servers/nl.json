@@ -19,7 +19,7 @@
     "multihop_port": 3004,
     "socks_name": "nl-ams-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "nl-ams-wg-002",
