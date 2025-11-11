@@ -59,6 +59,7 @@ export COUNTRY_CODE=""
 export EXPECTED_CITY=""
 export EXPECTED_COUNTRY=""
 export OWNED_SERVERS_ONLY=false
+export MULLVAD_SERVER_PORT=""
 
 # Telegram Notification (optional)
 export NOTIFY_VIA_TELEGRAM=false
