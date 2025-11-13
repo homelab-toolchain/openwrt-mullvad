@@ -17,7 +17,7 @@
     "status_messages": [],
     "pubkey": "1WN0Mqa0Azw7cYYEamHPgHXE8SuylNIG2QobZKOaclA=",
     "multihop_port": 3015,
-    "socks_name": null,
+    "socks_name": "ar-bue-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
@@ -39,7 +39,7 @@
     "status_messages": [],
     "pubkey": "gGrdozNHVCnmcX5x8OPOXfnyZ+TZWqD9GlHl1kRekyA=",
     "multihop_port": 3047,
-    "socks_name": null,
+    "socks_name": "ar-bue-wg-socks5-002.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   }

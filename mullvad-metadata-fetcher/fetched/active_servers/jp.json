@@ -154,6 +154,28 @@
     "daita": false
   },
   {
+    "hostname": "jp-tyo-wg-202",
+    "country_code": "jp",
+    "country_name": "Japan",
+    "city_code": "tyo",
+    "city_name": "Tokyo",
+    "fqdn": "jp-tyo-wg-202.relays.mullvad.net",
+    "active": true,
+    "owned": false,
+    "provider": "M247",
+    "ipv4_addr_in": "146.70.201.2",
+    "ipv6_addr_in": "2001:ac8:40:13::b02f",
+    "network_port_speed": 10,
+    "stboot": true,
+    "type": "wireguard",
+    "status_messages": [],
+    "pubkey": "yLKGIH/eaNUnrOEPRtgvC3PSMTkyAFK/0t8lNjam02k=",
+    "multihop_port": 3160,
+    "socks_name": "jp-tyo-wg-socks5-202.relays.mullvad.net",
+    "socks_port": 1080,
+    "daita": false
+  },
+  {
     "hostname": "jp-tyo-wg-203",
     "country_code": "jp",
     "country_name": "Japan",
