@@ -8,111 +8,107 @@
 
 ---
 
+The WireGuard setup follows Mullvad's router guidance: https://web.archive.org/web/20250830180859/https://mullvad.net/en/help/running-wireguard-router
+
+---
+
+## What this repository provides
+- `init.sh` keeps the repo up to date (including import of available servers), ensures scripts are executable, and reboots.
+- `mullvad-wireguard-connector/setup.sh` configures LAN/WAN DNS behavior, creates the `wg0` interface, and sets firewall rules (reboots when finished).
+- `mullvad-wireguard-connector/connect_or_reconnect.sh` selects the next Mullvad endpoint for your city/country/ownership preference, updates the WireGuard peer, and reloads networking.
+- `mullvad-connection/check_connection.sh` validates the active exit IP/location and optionally notifies via Telegram and Healthchecks.io.
+- `mullvad-connection/reboot_system_if_required.sh` lightweight cron-friendly check that reboots if the exit IP or location is wrong.
+- `mullvad-metadata-fetcher/runner.py` refreshes the bundled Mullvad server metadata (using GitHub workflow); pre-fetched JSON lives in `mullvad-metadata-fetcher/fetched/active_servers/<country>.json`.
+
+---
+
 ## Prerequisites
-
-1. You have your activated Mullvad account
-2. Your Mullvad account contains a public key of your client to be used
-
----
-
-## Introduction
-
-The WireGuard configuration for Mullvad is based on the following guide: https://web.archive.org/web/20250830180859/https://mullvad.net/en/help/running-wireguard-router
-
-OpenWrt 24.10.x was used to test this repository.
+- Active Mullvad account and WireGuard key pair added to Mullvad.
+- OpenWrt 24.10.x (or similar) with internet access for `opkg`.
+- Ability to store the repo at `/homelab-toolchain/openwrt-mullvad` and configs at `/homelab-toolchain/config`.
+- Optional: Telegram bot credentials and a Healthchecks.io ping URL for notifications.
 
 ---
 
-## Quick Start
-
-**Step 1:** Install necessary packages and clone repository
+## Quick start
+**1) Install base packages and reboot**
 ```
 opkg update && opkg install git git-http nano luci-proto-wireguard wireguard-tools jq coreutils-shuf
-```
-```
 reboot
 ```
+
+**2) Clone the repository**
 ```
-mkdir -p /homelab-toolchain && \
+mkdir -p /homelab-toolchain
 git clone https://github.com/homelab-toolchain/openwrt-mullvad.git /homelab-toolchain/openwrt-mullvad
 ```
 
-**Step 2:** Create configuration script 
+**3) Create your configuration file**
 ```
-mkdir -p /homelab-toolchain/config && \
-touch /homelab-toolchain/config/export_openwrt_mullvad_values.sh && \
-chmod +x /homelab-toolchain/config/export_openwrt_mullvad_values.sh
-```
-```
-nano /homelab-toolchain/config/export_openwrt_mullvad_values.sh
-```
-Add the following content with your values:
-```
+mkdir -p /homelab-toolchain/config
+cat >/homelab-toolchain/config/export_openwrt_mullvad_values.sh <<'EOF'
 #!/bin/ash
 # shellcheck shell=dash
 
-# Mullvad Config Values
-export MULLVAD_LOGIN=""
-export PERSONAL_PRIVATE_KEY=""
-export PERSONAL_PUBLIC_KEY=""
-export COUNTRY_CODE=""
-export EXPECTED_CITY=""
-export EXPECTED_COUNTRY=""
-export OWNED_SERVERS_ONLY=false
-export MULLVAD_SERVER_PORT=""
+# Required Mullvad values
+export MULLVAD_LOGIN=""           # Mullvad account number
+export PERSONAL_PRIVATE_KEY=""    # WireGuard private key for the router
+export PERSONAL_PUBLIC_KEY=""     # WireGuard public key registered with Mullvad
+export COUNTRY_CODE=""            # e.g. de
+export EXPECTED_CITY=""           # e.g. Berlin
+export EXPECTED_COUNTRY=""        # e.g. Germany
+export OWNED_SERVERS_ONLY=false   # true to limit to owned servers
+export MULLVAD_SERVER_PORT=""     # typically 51820
 
-# Telegram Notification (optional)
+# Telegram notification (optional)
 export NOTIFY_VIA_TELEGRAM=false
 export TELEGRAM_BOT_ID=""
 export TELEGRAM_BOT_TOKEN=""
 export TELEGRAM_CHAT_ID=""
 
-# Healthchecks.io Monitoring (optional)
+# Healthchecks.io monitoring (optional)
 export MONITOR_VIA_HEALTHCHECKS=false
 export HEALTHCHECKS_ID=""
+EOF
+chmod +x /homelab-toolchain/config/export_openwrt_mullvad_values.sh
 ```
 
-**Step 3:** Init configuration
+**4) Initialize the toolkit (pull latest changes, set execute bits, reboot)**
 ```
-chmod +x /homelab-toolchain/openwrt-mullvad/init.sh && \
+chmod +x /homelab-toolchain/openwrt-mullvad/init.sh
 ash /homelab-toolchain/openwrt-mullvad/init.sh
 ```
 
-**Step 4:** Setup and Run WireGuard Connection
+**5) Configure WireGuard and network defaults**
 ```
 ash /homelab-toolchain/openwrt-mullvad/mullvad-wireguard-connector/setup.sh
 ```
+
+**6) Connect or rotate to the next endpoint**
 ```
 ash /homelab-toolchain/openwrt-mullvad/mullvad-wireguard-connector/connect_or_reconnect.sh
 ```
 
-**Step 5:** Add cronjob tasks
-```
-# Init Mullvad WireGuard Updates
-0 4 * * * /homelab-toolchain/openwrt-mullvad/init.sh
+---
 
-# Check connection and restart system if required
+## Automation
+- Cron suggestions:
+```
+0 4 * * * /homelab-toolchain/openwrt-mullvad/init.sh
 */5 * * * * /homelab-toolchain/openwrt-mullvad/mullvad-connection/reboot_system_if_required.sh
 ```
-
-**Step 6:** Add startup task to `/etc/rc.local`:
+- Add to `/etc/rc.local` to bring the tunnel up after boot:
 ```
 sleep 1
-
 /homelab-toolchain/openwrt-mullvad/mullvad-wireguard-connector/connect_or_reconnect.sh
-
 exit 0
 ```
 
 ---
 
-> [!Warning]
-> **Disclaimer**: This project is not affiliated with any WireGuard provider. All actions demonstrated here could have 
-> been carried out by anyone and are not intended to be, nor should they be interpreted as, hacking. If certain servers 
-> or functionalities do not work as expected, this repository is not responsible. For typical use cases, it is 
-> recommended to use the official files and documentation provided by your chosen WireGuard provider.
-
----
+## Notes and disclaimer
+- Scripts assume OpenWrt defaults; if you customized LAN/WAN heavily, review `setup.sh` before running.
+- Reboots are intentional after setup and on health check failures to restore a clean state.
 
 > [!Tip]
-> Do you have an idea for this to be better/faster/more useful, please create an issue.
+> **Disclaimer:** This project is not affiliated with Mullvad or any WireGuard provider. It automates tasks that could be performed manually with official tooling. If specific servers or features fail, this repository is not responsible; rely on your provider's documentation for production use.
