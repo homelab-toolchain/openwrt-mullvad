@@ -83,7 +83,7 @@
     "status_messages": [],
     "pubkey": "RtTENHB7VBUiowxtdAzopcb2Fvd+OFneN73k13oPUEo=",
     "multihop_port": 3051,
-    "socks_name": null,
+    "socks_name": "hk-hkg-wg-socks5-303.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   }
