@@ -352,28 +352,6 @@
     "daita": false
   },
   {
-    "hostname": "se-mma-wg-101",
-    "country_code": "se",
-    "country_name": "Sweden",
-    "city_code": "mma",
-    "city_name": "Malm\u00c3\u00b6",
-    "fqdn": "se-mma-wg-101.relays.mullvad.net",
-    "active": true,
-    "owned": true,
-    "provider": "31173",
-    "ipv4_addr_in": "45.83.220.68",
-    "ipv6_addr_in": "2a03:1b20:1:e011::a21f",
-    "network_port_speed": 200,
-    "stboot": true,
-    "type": "wireguard",
-    "status_messages": [],
-    "pubkey": "7ncbaCb+9za3jnXlR95I6dJBkwL1ABB5i4ndFUesYxE=",
-    "multihop_port": 3189,
-    "socks_name": "se-mma-wg-socks5-101.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false
-  },
-  {
     "hostname": "se-mma-wg-102",
     "country_code": "se",
     "country_name": "Sweden",
@@ -877,6 +855,6 @@
     "multihop_port": 3130,
     "socks_name": "se-sto-wg-socks5-209.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   }
 ]
