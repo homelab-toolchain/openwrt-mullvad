@@ -54,11 +54,11 @@ cat >/homelab-toolchain/config/export_openwrt_mullvad_values.sh <<'EOF'
 export MULLVAD_LOGIN=""           # Mullvad account number
 export PERSONAL_PRIVATE_KEY=""    # WireGuard private key for the router
 export PERSONAL_PUBLIC_KEY=""     # WireGuard public key registered with Mullvad
-export COUNTRY_CODE=""            # e.g. de
-export EXPECTED_CITY=""           # e.g. Berlin
-export EXPECTED_COUNTRY=""        # e.g. Germany
+export COUNTRY_CODE=""            # e.g. nl
+export EXPECTED_CITY=""           # e.g. Amsterdam
+export EXPECTED_COUNTRY=""        # e.g. Netherlands
 export OWNED_SERVERS_ONLY=false   # true to limit to owned servers
-export MULLVAD_SERVER_PORT=""     # typically 51820
+export MULLVAD_SERVER_PORT="51820"# typically 51820 but you can use a different port
 
 # Telegram notification (optional)
 export NOTIFY_VIA_TELEGRAM=false

@@ -1,7 +1,7 @@
 #!/bin/ash
 # shellcheck shell=dash
 
-set -eu
+set -u
 
 # ----------------------------------------------------------------------------------------------------
 . /homelab-toolchain/config/export_openwrt_mullvad_values.sh
@@ -30,10 +30,11 @@ uci del dhcp.lan.ra_slaac > /dev/null 2>&1
 uci del dhcp.lan.ra_flags > /dev/null 2>&1
 # enable "Force DHCP on this network even if another server is detected"
 uci set dhcp.lan.force='1'
-#uci del dhcp.lan.dhcp_option > /dev/null 2>&1
-#uci add_list dhcp.lan.dhcp_option="6,$DNS_IP"
-uci commit network
-/etc/init.d/network restart
+uci del dhcp.lan.dhcp_option > /dev/null 2>&1
+uci add_list dhcp.lan.dhcp_option="6,$DNS_IP"
+uci commit dhcp
+/etc/init.d/odhcpd restart > /dev/null 2>&1
+/etc/init.d/odhcpd restart > /dev/null 2>&1
 # --------------------------------
 
 # --------------------------------
@@ -73,7 +74,8 @@ uci del dhcp.@dnsmasq[0].server > /dev/null 2>&1
 uci set dhcp.@dnsmasq[0].strictorder='1'
 uci add_list dhcp.@dnsmasq[0].server="$DNS_IP"
 uci commit dhcp
-#/etc/init.d/odhcpd restart
+/etc/init.d/odhcpd restart > /dev/null 2>&1
+/etc/init.d/odhcpd restart > /dev/null 2>&1
 # --------------------------------
 
 # --------------------------------

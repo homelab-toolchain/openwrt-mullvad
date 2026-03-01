@@ -1,7 +1,7 @@
 #!/bin/ash
 # shellcheck shell=dash
 
-set -eu
+set -u
 
 # ----------------------------------------------------------------------------------------------------
 . /homelab-toolchain/config/export_openwrt_mullvad_values.sh
