@@ -415,7 +415,7 @@
     "multihop_port": 3081,
     "socks_name": "ca-tor-wg-socks5-201.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "ca-tor-wg-202",
@@ -437,7 +437,7 @@
     "multihop_port": 3364,
     "socks_name": "ca-tor-wg-socks5-202.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "ca-tor-wg-203",
