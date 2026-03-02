@@ -83,7 +83,7 @@
     "status_messages": [],
     "pubkey": "QXR6DwdWn2urvyVNt5pFulLuhkyeuTp2STwGgEQ6Ehw=",
     "multihop_port": 3067,
-    "socks_name": null,
+    "socks_name": "no-osl-wg-socks5-101.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
@@ -105,7 +105,7 @@
     "status_messages": [],
     "pubkey": "MlS7Fep/Lx6d0j2c+ZWPWECAC+OpGVRq/NV4AWvw+C8=",
     "multihop_port": 3103,
-    "socks_name": null,
+    "socks_name": "no-osl-wg-socks5-102.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
@@ -127,7 +127,7 @@
     "status_messages": [],
     "pubkey": "7aoQqj/A9rVeZmuT6kCRPuQ4Pf0yy2T2RlTo7P8LYGE=",
     "multihop_port": 3104,
-    "socks_name": null,
+    "socks_name": "no-osl-wg-socks5-103.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
