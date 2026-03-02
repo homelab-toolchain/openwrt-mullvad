@@ -176,28 +176,6 @@
     "daita": false
   },
   {
-    "hostname": "fr-par-wg-005",
-    "country_code": "fr",
-    "country_name": "France",
-    "city_code": "par",
-    "city_name": "Paris",
-    "fqdn": "fr-par-wg-005.relays.mullvad.net",
-    "active": true,
-    "owned": true,
-    "provider": "31173",
-    "ipv4_addr_in": "193.32.126.70",
-    "ipv6_addr_in": "2a03:1b20:9:f011::f401",
-    "network_port_speed": 20,
-    "stboot": true,
-    "type": "wireguard",
-    "status_messages": [],
-    "pubkey": "cmqtSjWUa4/0bENQDKxdr0vQqf4nFVDodarHm0Pc0hY=",
-    "multihop_port": 3120,
-    "socks_name": "fr-par-wg-socks5-005.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false
-  },
-  {
     "hostname": "fr-par-wg-006",
     "country_code": "fr",
     "country_name": "France",

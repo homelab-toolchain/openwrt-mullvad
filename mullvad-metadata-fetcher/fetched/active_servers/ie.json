@@ -17,7 +17,7 @@
     "status_messages": [],
     "pubkey": "2r0vPpM71ZXpseWXTXw3iwn2sjIHOTpw1V9sp03bLWw=",
     "multihop_port": 3070,
-    "socks_name": null,
+    "socks_name": "ie-dub-wg-socks5-101.relays.mullvad.net",
     "socks_port": 1080,
     "daita": true
   },
@@ -39,7 +39,7 @@
     "status_messages": [],
     "pubkey": "2RSnfqTRb0BL/bPaKGj0OA/qopQaNG1qtzEH2Y8JyjE=",
     "multihop_port": 3078,
-    "socks_name": null,
+    "socks_name": "ie-dub-wg-socks5-102.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
@@ -61,7 +61,7 @@
     "status_messages": [],
     "pubkey": "/Q7cQuVZo0IYckUncGSzRnQssR1DC5veZWaAnf/yDTI=",
     "multihop_port": 3312,
-    "socks_name": null,
+    "socks_name": "ie-dub-wg-socks5-103.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   }
