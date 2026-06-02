@@ -19,7 +19,7 @@
     "multihop_port": 3006,
     "socks_name": "no-osl-wg-socks5-001.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "no-osl-wg-002",
@@ -41,7 +41,7 @@
     "multihop_port": 3108,
     "socks_name": "no-osl-wg-socks5-002.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "no-osl-wg-003",
@@ -63,7 +63,7 @@
     "multihop_port": 3109,
     "socks_name": "no-osl-wg-socks5-003.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "no-osl-wg-101",

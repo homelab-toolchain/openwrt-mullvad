@@ -75,17 +75,17 @@
     "active": true,
     "owned": false,
     "provider": "M247",
-    "ipv4_addr_in": "146.70.197.194",
-    "ipv6_addr_in": "2001:ac8:37:97::f001",
-    "network_port_speed": 10,
+    "ipv4_addr_in": "146.70.197.2",
+    "ipv6_addr_in": "2001:ac8:37:94::f001",
+    "network_port_speed": 20,
     "stboot": true,
     "type": "wireguard",
     "status_messages": [],
-    "pubkey": "Jjml2TSqKlgzW6UzPiJszaun743QYpyl5jQk8UOQYg0=",
-    "multihop_port": 3229,
+    "pubkey": "6UAFQlD1APkuTwMTH1c9VnF4eIU6egbt6RTIUyWSGEI=",
+    "multihop_port": 3019,
     "socks_name": "dk-cph-wg-socks5-401.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "dk-cph-wg-402",
@@ -98,15 +98,15 @@
     "owned": false,
     "provider": "M247",
     "ipv4_addr_in": "146.70.197.130",
-    "ipv6_addr_in": "2001:ac8:37:96::f001",
-    "network_port_speed": 10,
+    "ipv6_addr_in": "2001:ac8:37:95::f001",
+    "network_port_speed": 20,
     "stboot": true,
     "type": "wireguard",
     "status_messages": [],
     "pubkey": "ML0NcFPqy+x+ZJg7y9vfh77hXAOtgueIqp1j+CJVrXM=",
-    "multihop_port": 3230,
+    "multihop_port": 3030,
     "socks_name": "dk-cph-wg-socks5-402.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   }
 ]
