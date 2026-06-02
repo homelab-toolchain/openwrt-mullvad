@@ -110,6 +110,28 @@
     "daita": false
   },
   {
+    "hostname": "se-got-wg-006",
+    "country_code": "se",
+    "country_name": "Sweden",
+    "city_code": "got",
+    "city_name": "Gothenburg",
+    "fqdn": "se-got-wg-006.relays.mullvad.net",
+    "active": true,
+    "owned": true,
+    "provider": "31173",
+    "ipv4_addr_in": "185.209.199.7",
+    "ipv6_addr_in": "2a03:1b20:5:f011:6::f001",
+    "network_port_speed": 20,
+    "stboot": true,
+    "type": "wireguard",
+    "status_messages": [],
+    "pubkey": "dcSpHioI+TY37dbZcviFA/sxSUqmpECXRZIapwR8pVg=",
+    "multihop_port": 3310,
+    "socks_name": "se-got-wg-socks5-006.relays.mullvad.net",
+    "socks_port": 1080,
+    "daita": true
+  },
+  {
     "hostname": "se-got-wg-007",
     "country_code": "se",
     "country_name": "Sweden",
@@ -186,7 +208,7 @@
     "owned": true,
     "provider": "31173",
     "ipv4_addr_in": "193.138.218.220",
-    "ipv6_addr_in": "2a03:1b20:1:f410::a01f",
+    "ipv6_addr_in": "2a03:1b20:1:f410::fa01",
     "network_port_speed": 20,
     "stboot": true,
     "type": "wireguard",
@@ -348,6 +370,28 @@
     "pubkey": "cwglRdgLQ4gMG36TIYlc5OIemLNrYs4UM1KTc8mnzxk=",
     "multihop_port": 3190,
     "socks_name": "se-mma-wg-socks5-102.relays.mullvad.net",
+    "socks_port": 1080,
+    "daita": false
+  },
+  {
+    "hostname": "se-mma-wg-103",
+    "country_code": "se",
+    "country_name": "Sweden",
+    "city_code": "mma",
+    "city_name": "Malm\u00c3\u00b6",
+    "fqdn": "se-mma-wg-103.relays.mullvad.net",
+    "active": true,
+    "owned": true,
+    "provider": "31173",
+    "ipv4_addr_in": "45.83.220.70",
+    "ipv6_addr_in": "2a03:1b20:1:e011::a23f",
+    "network_port_speed": 20,
+    "stboot": true,
+    "type": "wireguard",
+    "status_messages": [],
+    "pubkey": "XscA5gebj51nmhAr6o+aUCnMHWGjbS1Gvvd0tuLRiFE=",
+    "multihop_port": 3191,
+    "socks_name": "se-mma-wg-socks5-103.relays.mullvad.net",
     "socks_port": 1080,
     "daita": false
   },
@@ -745,7 +789,7 @@
     "multihop_port": 3079,
     "socks_name": "se-sto-wg-socks5-205.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "se-sto-wg-206",
@@ -767,7 +811,7 @@
     "multihop_port": 3115,
     "socks_name": "se-sto-wg-socks5-206.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "se-sto-wg-207",
@@ -789,7 +833,7 @@
     "multihop_port": 3128,
     "socks_name": "se-sto-wg-socks5-207.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "se-sto-wg-208",

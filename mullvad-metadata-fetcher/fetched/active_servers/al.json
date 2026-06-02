@@ -1,5 +1,27 @@
 [
   {
+    "hostname": "al-tia-wg-001",
+    "country_code": "al",
+    "country_name": "Albania",
+    "city_code": "tia",
+    "city_name": "Tirana",
+    "fqdn": "al-tia-wg-001.relays.mullvad.net",
+    "active": true,
+    "owned": false,
+    "provider": "iRegister",
+    "ipv4_addr_in": "103.124.165.2",
+    "ipv6_addr_in": "2a04:27c0:0:e::f001",
+    "network_port_speed": 10,
+    "stboot": true,
+    "type": "wireguard",
+    "status_messages": [],
+    "pubkey": "ofyfRvMPB0PPIGGItNL+5tNdvTKXuWye5CfjPgPNvQ8=",
+    "multihop_port": 3494,
+    "socks_name": "al-tia-wg-socks5-001.relays.mullvad.net",
+    "socks_port": 1080,
+    "daita": true
+  },
+  {
     "hostname": "al-tia-wg-003",
     "country_code": "al",
     "country_name": "Albania",
@@ -19,7 +41,7 @@
     "multihop_port": 3574,
     "socks_name": "al-tia-wg-socks5-003.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   },
   {
     "hostname": "al-tia-wg-004",
@@ -41,6 +63,6 @@
     "multihop_port": 3575,
     "socks_name": "al-tia-wg-socks5-004.relays.mullvad.net",
     "socks_port": 1080,
-    "daita": false
+    "daita": true
   }
 ]
