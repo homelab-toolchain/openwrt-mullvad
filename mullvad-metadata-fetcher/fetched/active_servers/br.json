@@ -88,28 +88,6 @@
     "daita": false
   },
   {
-    "hostname": "br-sao-wg-302",
-    "country_code": "br",
-    "country_name": "Brazil",
-    "city_code": "sao",
-    "city_name": "Sao Paulo",
-    "fqdn": "br-sao-wg-302.relays.mullvad.net",
-    "active": true,
-    "owned": false,
-    "provider": "HostRoyale",
-    "ipv4_addr_in": "103.139.178.63",
-    "ipv6_addr_in": "2a06:3040:10:610::f101",
-    "network_port_speed": 10,
-    "stboot": true,
-    "type": "wireguard",
-    "status_messages": [],
-    "pubkey": "Xv1QvURPbgywITL6MNVhbYtfZXTm0lR98SPaf3AXeCc=",
-    "multihop_port": 3510,
-    "socks_name": "br-sao-wg-socks5-302.relays.mullvad.net",
-    "socks_port": 1080,
-    "daita": false
-  },
-  {
     "hostname": "br-sao-wg-303",
     "country_code": "br",
     "country_name": "Brazil",
