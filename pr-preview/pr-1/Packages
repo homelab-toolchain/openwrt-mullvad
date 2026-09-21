@@ -1,0 +1,17 @@
+Package: luci-app-mullvad-wireguard
+Version: 1.0.0-r1
+Depends: libc, luci-base, luci-proto-wireguard, wireguard-tools, curl, jq
+Source: feeds/base/luci-app-mullvad-wireguard
+SourceName: luci-app-mullvad-wireguard
+License: MIT
+Section: luci
+SourceDateEpoch: 1744562312
+URL: https://github.com/openwrt/luci
+Maintainer: OpenWrt LuCI community
+Architecture: all
+Installed-Size: 30720
+Filename: luci-app-mullvad-wireguard_1.0.0-r1_all.ipk
+Size: 5109
+SHA256sum: f612cf02332b7b584a25aa142b8eeeb53fdeb54324d40339282c1e9c90a77a52
+Description:  LuCI web interface for the openwrt-mullvad toolchain: run setup, reconnect, browse Mullvad servers by country/city, and view connection status
+
