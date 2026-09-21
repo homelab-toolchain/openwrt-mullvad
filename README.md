@@ -18,7 +18,50 @@ The WireGuard setup follows Mullvad's router guidance: https://web.archive.org/w
 - `mullvad-wireguard-connector/connect_or_reconnect.sh` selects the next Mullvad endpoint for your city/country/ownership preference, updates the WireGuard peer, and reloads networking.
 - `mullvad-connection/check_connection.sh` validates the active exit IP/location and optionally notifies via Telegram and Healthchecks.io.
 - `mullvad-connection/reboot_system_if_required.sh` lightweight cron-friendly check that reboots if the exit IP or location is wrong.
+- `mullvad-connection/get_status.sh` read-only status probe used by the LuCI app (no reboot/notify side effects).
 - `mullvad-metadata-fetcher/runner.py` refreshes the bundled Mullvad server metadata (using GitHub workflow); pre-fetched JSON lives in `mullvad-metadata-fetcher/fetched/active_servers/<country>.json`.
+- `luci-app-mullvad-wireguard/` a LuCI web UI (Services → Mullvad WireGuard) for running setup, browsing/selecting a server by country and city, reconnecting, and viewing connection status and the last health-check result — a thin front end over the scripts above.
+- An opkg feed published via GitHub Pages (`.github/workflows/deploy_feed.yaml` for the stable feed, `.github/workflows/pr_feed.yaml` for per-PR preview feeds), so `luci-app-mullvad-wireguard` can be installed with `opkg install` instead of a manual `.ipk` download.
+
+---
+
+## LuCI web UI
+
+`luci-app-mullvad-wireguard` is a standard OpenWrt LuCI package, built as an `.ipk` by the `Build LuCI App` GitHub Actions workflow (`.github/workflows/build_luci_app.yaml`) whenever a `luci-v*` tag is pushed, and attached to the corresponding GitHub Release.
+
+**Install:**
+```
+opkg install <path-or-url-to-luci-app-mullvad-wireguard_*.ipk>
+```
+Then open LuCI → Services → Mullvad WireGuard.
+
+The UI reads and writes the same `/homelab-toolchain/config/export_openwrt_mullvad_values.sh` file described below, and its buttons call the existing `setup.sh`/`connect_or_reconnect.sh` scripts directly — cron automation and the web UI stay in sync with no separate config to maintain. "Run setup" reboots the router a few seconds after the call returns, same as running `setup.sh` by hand; "Reconnect" carries the same self-healing reboot-on-failure behavior as running `connect_or_reconnect.sh` over SSH.
+
+Instead of downloading the `.ipk` by hand, you can also install straight from this repo's opkg feed — see below.
+
+---
+
+## opkg feed
+
+This repo publishes itself as an opkg feed via GitHub Pages, so `luci-app-mullvad-wireguard` can be installed and upgraded like any other package instead of manually downloading a `.ipk`.
+
+**Stable feed** (rebuilt on every push to `main` by `.github/workflows/deploy_feed.yaml`):
+```
+# in /etc/opkg/customfeeds.conf, or LuCI: System → Software → Configuration
+src/gz mullvad-wireguard https://homelab-toolchain.github.io/openwrt-mullvad
+```
+```
+opkg update
+opkg install luci-app-mullvad-wireguard
+```
+
+**PR preview feeds**: every open pull request gets its own feed at `https://homelab-toolchain.github.io/openwrt-mullvad/pr-preview/pr-<number>/`, built and torn down automatically by `.github/workflows/pr_feed.yaml` (the PR itself gets a comment with the exact URL). Useful for test-installing a change before it merges:
+```
+src/gz mullvad-wireguard-pr-42 https://homelab-toolchain.github.io/openwrt-mullvad/pr-preview/pr-42
+```
+Remove that feed line once the PR merges or closes — the preview build stops existing at that URL.
+
+**One-time repo setup** (also needed again if you fork this): under **Settings → Actions → General → Workflow permissions**, select "Read and write permissions" so the feed workflows can push to `gh-pages`. Run `Deploy Feed` once (push to `main`, or trigger it manually) to create the `gh-pages` branch, then under **Settings → Pages**, set Source to "Deploy from a branch" pointing at `gh-pages`.
 
 ---
 

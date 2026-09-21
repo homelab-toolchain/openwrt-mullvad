@@ -1,0 +1,53 @@
+name: Build luci-app-mullvad-wireguard
+description: Downloads the OpenWrt SDK and builds the luci-app-mullvad-wireguard .ipk
+
+outputs:
+  ipk-path:
+    description: Path to the built .ipk file, relative to the repository root
+    value: ${{ steps.find_ipk.outputs.ipk-path }}
+  sdk-dir:
+    description: Path to the extracted OpenWrt SDK, relative to the repository root (contains scripts/ipkg-make-index.sh)
+    value: openwrt-sdk
+
+runs:
+  using: composite
+  steps:
+    - name: Download and extract OpenWrt SDK
+      shell: bash
+      env:
+        # PKGARCH:=all in the package Makefile, so any target SDK can build it.
+        SDK_URL: https://downloads.openwrt.org/releases/24.10.1/targets/x86/64/openwrt-sdk-24.10.1-x86-64_gcc-13.3.0_musl.Linux-x86_64.tar.zst
+        SDK_DIR: openwrt-sdk-24.10.1-x86-64_gcc-13.3.0_musl.Linux-x86_64
+      run: |
+        wget -q "$SDK_URL"
+        tar --use-compress-program=unzstd -xf "$(basename "$SDK_URL")"
+        mv "$SDK_DIR" openwrt-sdk
+
+    - name: Update feeds and stage package
+      shell: bash
+      run: |
+        cd openwrt-sdk
+        ./scripts/feeds update luci
+        mkdir -p package/luci-app-mullvad-wireguard
+        cp -r ../luci-app-mullvad-wireguard/. package/luci-app-mullvad-wireguard/
+        sed -i 's|include ../../luci.mk|include $(TOPDIR)/feeds/luci/luci.mk|' package/luci-app-mullvad-wireguard/Makefile
+
+    - name: Configure and build
+      shell: bash
+      run: |
+        cd openwrt-sdk
+        make defconfig
+        echo "CONFIG_PACKAGE_luci-app-mullvad-wireguard=y" >> .config
+        make defconfig
+        make -j1 V=s package/luci-app-mullvad-wireguard/compile
+
+    - name: Find built ipk
+      id: find_ipk
+      shell: bash
+      run: |
+        IPK_FILE=$(find openwrt-sdk/bin/packages -name "luci-app-mullvad-wireguard*.ipk" -type f)
+        if [ -z "$IPK_FILE" ]; then
+          echo "Error: IPK file not found"
+          exit 1
+        fi
+        echo "ipk-path=$IPK_FILE" >> "$GITHUB_OUTPUT"

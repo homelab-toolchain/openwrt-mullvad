@@ -1,0 +1,13 @@
+{
+	"admin/services/mullvad-wireguard": {
+		"title": "Mullvad WireGuard",
+		"order": 60,
+		"action": {
+			"type": "view",
+			"path": "mullvad-wireguard/manager"
+		},
+		"depends": {
+			"acl": [ "luci-app-mullvad-wireguard" ]
+		}
+	}
+}

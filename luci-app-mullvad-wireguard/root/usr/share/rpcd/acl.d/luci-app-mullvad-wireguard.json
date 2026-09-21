@@ -1,0 +1,23 @@
+{
+	"luci-app-mullvad-wireguard": {
+		"description": "Grant access to the Mullvad WireGuard manager",
+		"read": {
+			"cgi-io": [ "exec" ],
+			"file": {
+				"/homelab-toolchain/config/export_openwrt_mullvad_values.sh": [ "read" ],
+				"/homelab-toolchain/openwrt-mullvad/mullvad-connection/get_status.sh": [ "exec" ],
+				"/tmp/homelab-toolchain/logs/last_check.json": [ "read" ],
+				"/homelab-toolchain/openwrt-mullvad/mullvad-metadata-fetcher/fetched/active_servers": [ "list" ],
+				"/homelab-toolchain/openwrt-mullvad/mullvad-metadata-fetcher/fetched/active_servers/*": [ "read" ]
+			}
+		},
+		"write": {
+			"cgi-io": [ "exec" ],
+			"file": {
+				"/homelab-toolchain/config/export_openwrt_mullvad_values.sh": [ "write" ],
+				"/homelab-toolchain/openwrt-mullvad/mullvad-wireguard-connector/setup.sh": [ "exec" ],
+				"/homelab-toolchain/openwrt-mullvad/mullvad-wireguard-connector/connect_or_reconnect.sh": [ "exec" ]
+			}
+		}
+	}
+}
