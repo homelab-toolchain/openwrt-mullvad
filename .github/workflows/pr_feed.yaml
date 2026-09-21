@@ -1,0 +1,48 @@
+name: PR Feed
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  deploy-preview:
+    name: Build and publish PR preview feed
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4.3.1
+
+      # Skipped when the PR is closed - the preview is being torn down, not rebuilt.
+      - name: Build ipk
+        id: build
+        if: github.event.action != 'closed'
+        uses: ./.github/actions/build-ipk
+
+      - name: Assemble feed
+        if: github.event.action != 'closed'
+        run: |
+          mkdir -p feed
+          cp "${{ steps.build.outputs.ipk-path }}" feed/
+          # ipkg-make-index.sh shells out to $MKHASH for SHA256sum entries.
+          export MKHASH="$(pwd)/${{ steps.build.outputs.sdk-dir }}/staging_dir/host/bin/mkhash"
+          cd feed
+          "../${{ steps.build.outputs.sdk-dir }}/scripts/ipkg-make-index.sh" . > Packages
+          gzip -9c Packages > Packages.gz
+          touch .nojekyll
+
+      # Deploys to pr-preview/pr-<number>/ on open/reopen/synchronize, and removes
+      # that path on close - this step always runs so the removal happens too.
+      - name: Deploy or remove PR preview
+        uses: rossjrw/pr-preview-action@ffa7509e91a3ec8dfc2e5536c4d5c1acdf7a6de9 # v1.8.1
+        with:
+          source-dir: ./feed
