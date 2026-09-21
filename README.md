@@ -18,7 +18,23 @@ The WireGuard setup follows Mullvad's router guidance: https://web.archive.org/w
 - `mullvad-wireguard-connector/connect_or_reconnect.sh` selects the next Mullvad endpoint for your city/country/ownership preference, updates the WireGuard peer, and reloads networking.
 - `mullvad-connection/check_connection.sh` validates the active exit IP/location and optionally notifies via Telegram and Healthchecks.io.
 - `mullvad-connection/reboot_system_if_required.sh` lightweight cron-friendly check that reboots if the exit IP or location is wrong.
+- `mullvad-connection/get_status.sh` read-only status probe used by the LuCI app (no reboot/notify side effects).
 - `mullvad-metadata-fetcher/runner.py` refreshes the bundled Mullvad server metadata (using GitHub workflow); pre-fetched JSON lives in `mullvad-metadata-fetcher/fetched/active_servers/<country>.json`.
+- `luci-app-mullvad-wireguard/` a LuCI web UI (Services → Mullvad WireGuard) for running setup, browsing/selecting a server by country and city, reconnecting, and viewing connection status and the last health-check result — a thin front end over the scripts above.
+
+---
+
+## LuCI web UI
+
+`luci-app-mullvad-wireguard` is a standard OpenWrt LuCI package, built as an `.ipk` by the `Build LuCI App` GitHub Actions workflow (`.github/workflows/build_luci_app.yaml`) whenever a `luci-v*` tag is pushed, and attached to the corresponding GitHub Release.
+
+**Install:**
+```
+opkg install <path-or-url-to-luci-app-mullvad-wireguard_*.ipk>
+```
+Then open LuCI → Services → Mullvad WireGuard.
+
+The UI reads and writes the same `/homelab-toolchain/config/export_openwrt_mullvad_values.sh` file described below, and its buttons call the existing `setup.sh`/`connect_or_reconnect.sh` scripts directly — cron automation and the web UI stay in sync with no separate config to maintain. "Run setup" reboots the router a few seconds after the call returns, same as running `setup.sh` by hand; "Reconnect" carries the same self-healing reboot-on-failure behavior as running `connect_or_reconnect.sh` over SSH.
 
 ---
 

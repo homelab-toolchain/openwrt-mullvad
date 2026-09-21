@@ -18,6 +18,19 @@ HOSTNAME=$(echo "$MULLVAD_INFO" | jq -r '.mullvad_exit_ip_hostname')
 CURRENT_LOCATION="$CITY, $COUNTRY"
 EXPECTED_LOCATION="$EXPECTED_CITY, $EXPECTED_COUNTRY"
 
+mkdir -p /tmp/homelab-toolchain/logs
+cat >/tmp/homelab-toolchain/logs/last_check.json <<EOF
+{
+  "timestamp": $(date +%s),
+  "ok": $( [ "$IS_MULLVAD_NETWORK" = "true" ] && [ "$CURRENT_LOCATION" = "$EXPECTED_LOCATION" ] && echo true || echo false ),
+  "ip": "",
+  "location": "$CURRENT_LOCATION",
+  "expected_location": "$EXPECTED_LOCATION",
+  "exit_hostname": "$HOSTNAME",
+  "source": "reboot_check"
+}
+EOF
+
 if [ "$IS_MULLVAD_NETWORK" != "true" ] || [ "$CURRENT_LOCATION" != "$EXPECTED_LOCATION" ]; then
     echo "Something is wrong. Rebooting..."
     reboot

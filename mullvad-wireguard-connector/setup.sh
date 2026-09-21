@@ -102,5 +102,5 @@ service firewall restart
 # Reboot the system
 # --------------------------------
 echo "Rebooting..."
-reboot
+(sleep 3 && reboot) &
 # --------------------------------
